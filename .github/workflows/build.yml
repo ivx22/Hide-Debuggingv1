@@ -14,14 +14,14 @@ jobs:
 
       - name: Create ZIP file
         run: |
-          zip -r module.zip . \
+          zip -r hidebug.zip . \
             -x "*.git*" \
             -x ".github/*" \
             -x "README.md" \
             -x "LICENSE" \
-            -x "module.zip"
+            -x "*.zip"
 
       - name: Upload ZIP as Release Asset
         uses: softprops/action-gh-release@v2
         with:
-          files: module.zip
+          files: hidebug.zip
