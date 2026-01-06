@@ -1,0 +1,27 @@
+name: Build Magisk Module ZIP
+
+on:
+  release:
+    types: [published]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Create ZIP file
+        run: |
+          zip -r module.zip . \
+            -x "*.git*" \
+            -x ".github/*" \
+            -x "README.md" \
+            -x "LICENSE" \
+            -x "module.zip"
+
+      - name: Upload ZIP as Release Asset
+        uses: softprops/action-gh-release@v2
+        with:
+          files: module.zip
